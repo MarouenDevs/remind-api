@@ -3,6 +3,6 @@
  * @type {*|Datastore}
  */
 const Datastore = require('nedb');
-const dbRemind = new Datastore({ filename: '../data/data.db', autoload: true });
+const dbRemind = new Datastore();
 
 export default dbRemind;

@@ -24,6 +24,14 @@ async function deleteNotes(req, res) {
     });
 
 }
+async function searchNote(req, res) {
+
+    dbRemind.find({title: req.params.title}).exec(function (err, notes) {
+        return res.status("200").send(notes);
+    });
+
+}
+
 
 
 /**
@@ -35,10 +43,10 @@ async function deleteNotes(req, res) {
 async function addNote(req, res) {
     const date = new Date();
     var note = {
-        title: "title 1",
-        content: "my content 1",
+        title: req.body.title,
+        content: req.body.content,
         updateAt: date.toDateString(),
-        color: 'lazur',
+        color: req.body.color,
     };
 
     dbRemind.insert(note, function (err, newDoc) {
@@ -48,4 +56,4 @@ async function addNote(req, res) {
 
 }
 
-export default {addNote, getNotes, deleteNotes};
+export default {addNote, getNotes, deleteNotes, searchNote};
